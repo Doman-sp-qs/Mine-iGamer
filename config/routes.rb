@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'posts/index'
+    get 'posts/show'
+    get 'posts/edit'
+  end
+  namespace :public do
+    get 'customers/show'
+    get 'customers/edit'
+  end
+  namespace :public do
+    get 'homes/top'
+    get 'homes/about'
+  end
   get 'homes/top'
   get 'homes/about'
   
