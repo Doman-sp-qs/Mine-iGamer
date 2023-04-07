@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :customers
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'homes/top'
+  get 'homes/about'
+  
+  # custoer側のルーティング(devise)
+  devise_for :customer, skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: "public/sessions"
+  }
+  
+  
+  # admin側のルーティング(devise)
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
+  
+  
+  
 end
