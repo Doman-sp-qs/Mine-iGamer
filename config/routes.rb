@@ -1,35 +1,34 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  namespace :public do
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
-  end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
-  get 'homes/top'
-  get 'homes/about'
   
-  # custoer側のルーティング(devise)
+  ## Customer側
+  # homesコントローラ
+  root :to => "public/homes#top"
+  get "about" => "public/homes#about", as: "about"
+  
+  # devise関連
   devise_for :customer, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
   
+  scope module: "public" do
+    resources :customers, only: [:show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get "followings" => "relationships#followings", as: "followings"
+      get "followers" => "relationships#followers", as: "followers"
+    end
+    resources :posts, only: [:index, :create, :show, :edit, :update, :destroy] do
+      resources :post_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+    end
+    
+    
+  end
   
-  # admin側のルーティング(devise)
+  
+  
+  ## Admin側
+  # devise関連
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
