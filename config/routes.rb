@@ -21,18 +21,21 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-    
-    
   end
   
   
   
   ## Admin側
+  # homesコントローラ
+  get "/admin" => "admin/homes#top", as: "admin"
+  
   # devise関連
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
   
-  
+  scope module: "admin" do
+    resources :customers, only: [:show, :edit, :update]
+  end
   
 end
