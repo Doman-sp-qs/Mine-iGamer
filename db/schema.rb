@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2023_04_07_070528) do
   end
 
   create_table "posts", force: :cascade do |t|
+    t.integer "customer_id", null: false
     t.string "game_name", null: false
     t.string "title", null: false
     t.text "body", null: false

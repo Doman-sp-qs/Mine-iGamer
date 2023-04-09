@@ -19,7 +19,7 @@
         <td><%= link_to post.title,post_path(post.id) %></td>
         <td><%= post.body %></td>
         <td id="favorite-btn_<%= post.id %>">
-          <%= render 'favorites/favorite-btn', post: post %>
+          <%#= render 'favorites/favorite-btn', post: post %>
         </td>
         <td>コメント数:<%= post.post_comments.count %></td>
         <td><%= post.created_at.strftime('%Y/%m/%d') %></td>

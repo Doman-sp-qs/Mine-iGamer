@@ -3,6 +3,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
     create_table :posts do |t|
       
       # 追加カラム
+      t.integer :customer_id,      null: false
       t.string :game_name,         null: false
       t.string :title,             null: false
       t.text :body,                null: false
