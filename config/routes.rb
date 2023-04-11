@@ -34,7 +34,10 @@ Rails.application.routes.draw do
   
   ### Admin側
   ## homesコントローラ
-  get "/admin" => "admin/homes#top", as: "admin"
+  # customer一覧ページ
+  get "/admin" => "admin/homes#customers", as: "admin_customers"
+  # post一覧ページ
+  get "/admin/posts" => "admin/homes#posts", as: "admin_posts"
   
   ## devise関連
   devise_for :admin, skip: [:registrations, :passwords], controllers: {

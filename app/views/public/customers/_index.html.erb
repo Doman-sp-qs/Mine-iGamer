@@ -9,17 +9,24 @@
   <tbody>
     <% customers.each do |customer| %>
       <tr>
-        <td><%= image_tag customer.get_profile_image, size: '50x50' %></td>
+        <td><%#= image_tag customer.get_profile_image, size: '50x50' %>image</td>
         <td><%= customer.name %></td>
         <td>フォロワー数:<%= customer.followers.count %></td>
-        <td>
-          <% if current_customer.following?(customer) %>
+        
+        <% if current_admin %>
+          <!--非表示-->
+        <% elsif current_customer.following?(customer) %>
+          <td>
             <%= link_to "フォロー外す", customer_relationships_path(customer.id), method: :delete %>
-          <% else %>
+          </td>
+        <% else %>
+          <td>
             <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post %>
-          <% end %>
+          </td>
+        <% end %>
+        <td>
+          <%= link_to 'Show', customer %>
         </td>
-        <td><%= link_to 'Show', customer %></td>
       </tr>
     <% end %>
   </tbody>
