@@ -8,7 +8,9 @@
       <% end %>
     </td>
     <td><%= post_comment.post_comment %></td>
-    <td><%= link_to 'Destroy', post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+    
+      <td><%= link_to 'Destroy', post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+    
   </tr>
   <% end %>
 </table>

@@ -21,21 +21,21 @@
           </td>
           <td><%= link_to @post.title, post_path(@post.id) %></td>
           <td><%= @post.body %></td>
-          <% if @post.favorited_by?(current_customer) %>
           <td>
-            <%= link_to post_favorites_path(@post), method: :delete, class: 'text-danger' do %>
-              <i class="fas fa-heart"></i><%= @post.favorites.count %>
+            <% if current_admin %>
+              いいね <strong><%= @post.favorites.count %></strong> 件
+            <% elsif @post.favorited_by?(current_customer) %>
+              <%= link_to post_favorites_path(@post), method: :delete, class: 'text-danger' do %>
+                <i class="fas fa-heart"></i><%= @post.favorites.count %>
+              <% end %>
+            <% else %>
+               <%= link_to post_favorites_path(@post), method: :post, class: 'text-info' do %>
+                <i class="far fa-heart"></i><%= @post.favorites.count %>
+              <% end %>
             <% end %>
           </td>
-          <% else %>
-          <td>
-             <%= link_to post_favorites_path(@post), method: :post, class: 'text-info' do %>
-              <i class="far fa-heart"></i><%= @post.favorites.count %>
-            <% end %>
-          </td>
-          <% end %>
           <td>コメント数:<%= @post.post_comments.count %></td>
-          <% if @post.customer_id == current_customer.id %>
+          <% if current_admin || @post.customer_id == current_customer.id %>
             <td><%= link_to 'Edit', edit_post_path(@post), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>

@@ -45,10 +45,11 @@ Rails.application.routes.draw do
   }
   
   ## adminユーザ関連
-  # "admin"scope
-  scope module: "admin" do
+  # "admin"
+  namespace :admin do
     # customer管理
-    resources :customers, only: [:show, :edit, :update]
+    resources :customer, only: [:show, :edit, :update]
   end
+  
   
 end

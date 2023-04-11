@@ -19,7 +19,11 @@
 </table>
 　
 <div class='row'>
-  <% if customer == current_customer %>
+  <% if current_admin %>
+    <%= link_to edit_customer_path(customer), class: "btn btn-outline-secondary btn-block" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  <% elsif customer == current_customer %>
     <%= link_to edit_customer_path(customer), class: "btn btn-outline-secondary btn-block" do %>
       <i class="fas fa-user-cog"></i>
     <% end %>
