@@ -11,7 +11,7 @@
       <tr>
         <td><%#= image_tag customer.get_profile_image, size: '50x50' %>image</td>
         <td><%= customer.name %></td>
-        <td>フォロワー数:<%= customer.followers.count %></td>
+        <td>フォロワー <strong><%= customer.followers.count %></strong> 人</td>
         
         <% if current_admin %>
           <!--非表示-->
