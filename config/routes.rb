@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   # "admin"
   namespace :admin do
     # customer管理
-    resources :customer, only: [:show, :edit, :update]
+    resources :customers, only: [:show, :edit, :update]
   end
   
   
