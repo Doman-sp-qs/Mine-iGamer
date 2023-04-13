@@ -33,8 +33,9 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       # t.datetime :locked_at
       
       # 追加カラム
-      t.string :name,         null: false
+      t.string :name,           null: false
       t.text :introduction    
+      t.boolean :is_stopping,   null: false, default: false
       
       
       t.timestamps null: false

@@ -8,7 +8,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
     if @post.save
-      redirect_to post_path(@post), notice: "You have created book successfully."
+      redirect_to post_path(@post), notice: "投稿に成功しました"
     else
       @posts = Post.all
       render :index
@@ -29,7 +29,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: "You have updated book successfully."
+      redirect_to post_path(@post), notice: "投稿の更新に成功しました"
     else
       render :edit
     end

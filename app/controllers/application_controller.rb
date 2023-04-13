@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_customer!, except: [:top, :about]
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   def after_sign_in_path_for(resource_or_scope)
@@ -24,6 +25,12 @@ class ApplicationController < ActionController::Base
   end
   
   protected
+  
+  def customer_is_stopping?
+    if current_customer.is_stopping
+      redirect_to new_customer_session_path, notice: "このアカウントは利用停止中です"
+    end
+  end
   
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
