@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  namespace :admin do
+    get 'posts/show'
+    get 'posts/edit'
+  end
   ### Customer側
   ## homesコントローラ
   root :to => "public/homes#top"
