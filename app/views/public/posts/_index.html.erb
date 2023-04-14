@@ -10,19 +10,27 @@
   <tbody>
     <% posts.each do |post| %>
       <tr>
-        <td>
-          <%= link_to(customer_path(post.customer_id)) do %>
-            <%#= image_tag post.customer.get_profile_image, size:'50x50' %>
-            image
-          <% end %>
-        </td>
-        <td><%= link_to post.title,post_path(post.id) %></td>
-        <td><%= post.body %></td>
         <% if current_admin %>
+          <td>
+            <%= link_to(admin_customer_path(post.customer_id)) do %>
+              <%#= image_tag post.customer.get_profile_image, size:'50x50' %>
+              image
+            <% end %>
+          </td>
+          <td><%= link_to post.title, admin_post_path(post.id) %></td>
+          <td><%= post.body %></td>
           <td>
             いいね <strong><%= post.favorites.count %></strong> 件
           </td>
         <% else %>
+          <td>
+            <%= link_to(customer_path(post.customer_id)) do %>
+              <%#= image_tag post.customer.get_profile_image, size:'50x50' %>
+              image
+            <% end %>
+          </td>
+          <td><%= link_to post.title, post_path(post.id) %></td>
+          <td><%= post.body %></td>
           <td id="favorite-btn_<%= post.id %>">
             <%= render 'public/favorites/favorite-btn', post: post %>
           </td>
