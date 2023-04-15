@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_customer!, except: [:top, :about], unless: :admin_url 
   before_action :authenticate_admin!, if: :admin_url 
-  # before_action :customer_is_stopping?, except: [:top, :about]
+  
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   
@@ -36,8 +36,9 @@ class ApplicationController < ActionController::Base
   
   # customerユーザのis_stoppingステータスの判定
   def customer_is_stopping?
-    if current_customer.is_stopping
-      redirect_to new_customer_session_path, notice: "このアカウントは利用停止中です"
+    if current_customer && current_customer.is_stopping
+      destroy_customer_session_path
+      # notice: "このアカウントは利用停止中です"
     end
   end
   
