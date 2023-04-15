@@ -52,9 +52,9 @@ Rails.application.routes.draw do
   # "admin"
   namespace :admin do
     # customer管理
-    resources :customers, only: [:show, :edit, :update] do
-      post "is_stop", on: :member
-    end
+    resources :customers, only: [:show, :edit, :update]
+    post "customers/:id/is_stop" => "is_stop_statuses#create", as: "customer_is_stop"
+    delete "customers/:id/is_stop" => "is_stop_statuses#destroy", as: "customer_is_restart"
     resources :posts, only: [:show, :edit, :update, :destroy]
   end
   

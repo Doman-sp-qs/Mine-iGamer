@@ -20,10 +20,12 @@
 　
 <div class='row'>
   <% if current_admin %>
+    <!--プロフィール編集ボタン-->
     <%= link_to edit_admin_customer_path(customer), class: "btn btn-outline-secondary btn-block" do %>
       <i class="fas fa-user-cog"></i>
     <% end %>
-    <%#= link_to dsaffd %>
+    <!--利用停止/再開ボタン-->
+    <%= render 'admin/is_stop_statuses/is-stop', customer: customer %>
   <% elsif customer == current_customer %>
     <%= link_to edit_customer_path(customer), class: "btn btn-outline-secondary btn-block" do %>
       <i class="fas fa-user-cog"></i>

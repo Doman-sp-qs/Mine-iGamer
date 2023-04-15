@@ -40,4 +40,10 @@ class Customer < ApplicationRecord
     followings.include?(customer)
   end
   
+  # customerの利用停止ステータスの判定
+  def is_stopping?(customer)
+    
+    customers.exists?(is_stopping: true)
+  end
+  
 end
