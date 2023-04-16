@@ -14,6 +14,11 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
+  ## 利用停止アカウントの自動ログアウト用
+  devise_scope :customer do
+    get '/logout', to: 'devise/sessions#destroy', as: :logout
+  end
+  
   ## "public"scope
   scope module: "public" do
     ## customerユーザ関連

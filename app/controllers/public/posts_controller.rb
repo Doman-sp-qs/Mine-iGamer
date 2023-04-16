@@ -1,4 +1,7 @@
 class Public::PostsController < ApplicationController
+  before_action :customer_is_stopping?, only: [:index]
+  
+  
   def index
     @posts = Post.all
     @post = Post.new

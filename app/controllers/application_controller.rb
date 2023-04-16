@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_customer!, except: [:top, :about], unless: :admin_url 
-  before_action :authenticate_admin!, if: :admin_url 
-  
+  before_action :authenticate_admin!, if: :admin_url
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   
@@ -11,16 +10,16 @@ class ApplicationController < ActionController::Base
       # 管理者のトップページ(顧客一覧)
       admin_customers_path
     else
-      # トップページ
-      root_path
+      # 投稿一覧ページ
+      posts_path
     end
   end
   
   # ログアウト後の遷移先
   def after_sign_out_path_for(resource_or_scope)
-    if resource_or_scope == :user
+    if resource_or_scope == :customer
       # トップページ
-      root_path
+      new_customer_session_path
     elsif resource_or_scope == :admin
       # 管理者ログインページ
       new_admin_session_path
@@ -37,8 +36,7 @@ class ApplicationController < ActionController::Base
   # customerユーザのis_stoppingステータスの判定
   def customer_is_stopping?
     if current_customer && current_customer.is_stopping
-      destroy_customer_session_path
-      # notice: "このアカウントは利用停止中です"
+      redirect_to logout_path, notice: "このアカウントは利用停止中です"
     end
   end
   
