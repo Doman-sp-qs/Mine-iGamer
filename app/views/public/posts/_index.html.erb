@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th></th>
+      <th>Game Title</th>
       <th>Title</th>
       <th>Opinion</th>
       <th colspan="3"></th>
@@ -14,30 +15,33 @@
           <td>
             <%= link_to(admin_customer_path(post.customer_id)) do %>
               <%#= image_tag post.customer.get_profile_image, size:'50x50' %>
-              image
+              image<br>
+              <%= post.customer.name %>
             <% end %>
           </td>
+          <td><%= link_to post.game_name, admin_post_path(post.id) %></td>
           <td><%= link_to post.title, admin_post_path(post.id) %></td>
           <td><%= post.body %></td>
           <td>
-            いいね <strong><%= post.favorites.count %></strong> 件
+            いいね <strong><%= post.favorites.count %></strong> 件<br>
+            コメント <strong><%= post.post_comments.count %></strong> 件
           </td>
         <% else %>
           <td>
             <%= link_to(customer_path(post.customer_id)) do %>
               <%#= image_tag post.customer.get_profile_image, size:'50x50' %>
-              image
+              image<br>
+              <%= post.customer.name %>
             <% end %>
           </td>
+          <td><%= link_to post.game_name, post_path(post.id) %></td>
           <td><%= link_to post.title, post_path(post.id) %></td>
           <td><%= post.body %></td>
           <td id="favorite-btn_<%= post.id %>">
-            <%= render 'public/favorites/favorite-btn', post: post %>
+            <%= render 'public/favorites/favorite-btn', post: post %><br>
+            コメント <strong><%= post.post_comments.count %></strong> 件
           </td>
         <% end %>
-        <td>
-          コメント <strong><%= post.post_comments.count %></strong> 件
-        </td>
         <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
       </tr>
     <% end %>
