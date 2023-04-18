@@ -12,32 +12,47 @@
     <div class='col-md-8 offset-md-1'>
   		<h2>post detail</h2>
   		<table class='table'>
-  		  <tr>
-          <td>
-            <%= link_to(customer_path(@post.customer_id)) do %>
-              <%#= image_tag @post.customer.get_profile_image, size:"100x100" %><br>
-              <%= @post.customer.name %>
-            <% end %>
-          </td>
-          <td><%= link_to @post.title, post_path(@post.id) %></td>
-          <td><%= @post.body %></td>
-          
-          <% if current_admin %>
+  		  <thead>
+          <tr>
+            <th></th>
+            <th>Game Title</th>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+    		  <tr>
             <td>
-              いいね <strong><%= @post.favorites.count %></strong> 件
+              <%= link_to(customer_path(@post.customer_id)) do %>
+                <%#= image_tag @post.customer.get_profile_image, size:"100x100" %><br>
+                <%= @post.customer.name %>
+              <% end %>
             </td>
-          <% else %>
-            <td id="favorite-btn_<%= @post.id %>">
-              <%= render 'public/favorites/favorite-btn', post: @post %>
-            </td>
-          <% end %>
-          
-          <td>コメント数:<%= @post.post_comments.count %></td>
-          <% if current_admin || @post.customer_id == current_customer.id %>
-            <td><%= link_to 'Edit', edit_post_path(@post), class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-          <% end %>
-        </tr>
+            <td><%= link_to @post.game_name, post_path(@post.id) %></td>
+            <td><%= link_to @post.title, post_path(@post.id) %></td>
+            <td><%= @post.body %></td>
+            
+            <% if current_admin %>
+              <td>
+                いいね <strong><%= @post.favorites.count %></strong> 件
+                コメント <strong><%= @post.post_comments.count %></strong> 件
+              </td>
+            <% else %>
+              <td>
+                <div id="favorite-btn_<%= @post.id %>">
+                  <%= render 'public/favorites/favorite-btn', post: @post %>
+                </div>
+                コメント <strong><%= @post.post_comments.count %></strong> 件
+              </td>
+            <% end %>
+            
+            <% if current_admin || @post.customer_id == current_customer.id %>
+              <td><%= link_to 'Edit', edit_post_path(@post), class: "btn btn-sm btn-success" %></td>
+              <td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+            <% end %>
+          </tr>
+        </tbody>
       </table>
       <div class="mt-5">
         <%= render 'public/post_comments/index', post: @post %>
