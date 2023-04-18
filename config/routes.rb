@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
+  
   ## 利用停止アカウントの自動ログアウト用
   devise_scope :customer do
     get '/logout', to: 'devise/sessions#destroy', as: :logout
@@ -67,6 +68,12 @@ Rails.application.routes.draw do
   ## その他
   # 検索機能
   get "public/search" => "public/searches#search"
+  
+  # ゲストログイン用
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+  
   
   
 end
