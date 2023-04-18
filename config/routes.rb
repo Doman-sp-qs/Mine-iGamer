@@ -64,8 +64,9 @@ Rails.application.routes.draw do
     resources :posts, only: [:show, :edit, :update, :destroy]
   end
   
-  
-  get "search" => "searches#search"
+  ## その他
+  # 検索機能
+  get "public/search" => "public/searches#search"
   
   
 end

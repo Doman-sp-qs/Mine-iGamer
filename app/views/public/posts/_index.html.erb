@@ -37,8 +37,10 @@
           <td><%= link_to post.game_name, post_path(post.id) %></td>
           <td><%= link_to post.title, post_path(post.id) %></td>
           <td><%= post.body %></td>
-          <td id="favorite-btn_<%= post.id %>">
-            <%= render 'public/favorites/favorite-btn', post: post %><br>
+          <td>
+            <div id="favorite-btn_<%= post.id %>">
+              <%= render 'public/favorites/favorite-btn', post: post %><br>
+            </div>
             コメント <strong><%= post.post_comments.count %></strong> 件
           </td>
         <% end %>
