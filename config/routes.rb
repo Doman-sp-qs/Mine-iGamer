@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'searches/search'
   namespace :admin do
     get 'posts/show'
     get 'posts/edit'
@@ -62,6 +63,9 @@ Rails.application.routes.draw do
     delete "customers/:id/is_stop" => "is_stop_statuses#destroy", as: "customer_is_restart"
     resources :posts, only: [:show, :edit, :update, :destroy]
   end
+  
+  
+  get "search" => "searches#search"
   
   
 end
