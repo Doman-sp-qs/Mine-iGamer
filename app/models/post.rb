@@ -1,9 +1,14 @@
 class Post < ApplicationRecord
   
+  # アソシエーション設定
   belongs_to :customer
-  
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  
+  # バリデーション
+  validates :game_name, presence: true, length: {maximum: 50}
+  validates :title, presence: true, length: {maximum: 20}
+  validates :body, presence: true, length: {maximum: 140}
   
   
   # いいね判定
