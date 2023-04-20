@@ -22,7 +22,7 @@
     		  <tr>
             <td>
               <%= link_to(customer_path(@post.customer_id)) do %>
-                <%#= image_tag @post.customer.get_profile_image, size:"100x100" %><br>
+                <%= image_tag @post.customer.get_profile_image(100,100) %><br>
                 <%= @post.customer.name %>
               <% end %>
             </td>

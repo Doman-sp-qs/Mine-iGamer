@@ -9,7 +9,7 @@
   <tbody>
     <% customers.each do |customer| %>
       <tr>
-        <td><%#= image_tag customer.get_profile_image, size: '50x50' %>image</td>
+        <td><%= image_tag customer.get_profile_image(100,100) %></td>
         <td><%= customer.name %></td>
         <td>フォロワー <strong><%= customer.followers.count %></strong> 人</td>
         
