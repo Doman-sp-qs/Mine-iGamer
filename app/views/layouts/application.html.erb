@@ -9,13 +9,19 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  
   <body>
     <!--ヘッダー-->
     <%= render 'layouts/header' %>
-    <%#= render 'layouts/sidebar' %>
     <main style="padding-bottom: 80px">
-      <%= yield %>
+      <div class='container'>
+        <div class='row'>
+          <%#= render 'layouts/sidebar' %>
+          <%= yield %>
+        </div>
+        <!--右サイドバー-->
+        
+      </div>
     </main>
     <!--フッター-->
     <%= render 'layouts/footer' %>

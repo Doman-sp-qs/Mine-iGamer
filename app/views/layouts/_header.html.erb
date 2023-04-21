@@ -82,11 +82,18 @@
         
       </div>
     </div>
+    
+    
+    
   </div>
+  
+  
+  
+  <div class="container">
   
   <!--プロフィール用ハンバーガーメニュー-->
   <div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#profileDropdown" aria-controls="searchDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#profileDropdown" aria-controls="profileDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-user"></i>
     </button>
     
@@ -96,4 +103,20 @@
       <%= render 'public/customers/info', customer: current_customer %>
     </div>
   </div>
+  
+  <!--投稿用ハンバーガーメニュー-->
+  <div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#postDropdown" aria-controls="postDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-pen"></i>
+    </button>
+    
+    <!--投稿フォーム-->
+    <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100" id="postDropdown">
+      <h2>New post</h2>
+      <%= render 'public/posts/form', post: @post %>
+    </div>
+  </div>
+  
+  </div>
+  
 </header>
