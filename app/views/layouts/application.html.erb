@@ -11,14 +11,19 @@
   </head>
   
   <body>
-    <!--ヘッダー-->
-    <%= render 'layouts/header' %>
+    
+    
+    
     <main style="padding-bottom: 80px">
       <div class='container'>
         <div class='row'>
-          <%#= render 'layouts/sidebar' %>
+          <div class="col-2 sticky-top" style="border-right: 5px solid #d8d8d8">
+            <%= render 'layouts/sidebar' %>
+          </div>
           <%= yield %>
         </div>
+        
+        
         <!--右サイドバー-->
         
       </div>

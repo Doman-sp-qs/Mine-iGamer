@@ -1,122 +1,95 @@
-<header class="sticky-top bg-white">
-  <div class="container col-sm-12 col-md-10 col-lg-12 col-xl-12 d-flex justify-content-between pr-0" style="border-bottom: 5px solid #d8d8d8">
-    
-    <!--ロゴ-->
-    <div class="row">
-      <a class="navbar-brand text-dark d-flex align-items-center ml-5" data-toggle="tooltip" data-placement="top" title="Tooltip on top" href="/">
-        <%#= image_tag('logo-30x30.png') %>
-        <h1>LOGO</h1>
-      </a>
-    </div>
-    
-    <!--リンク一覧-->
-    <div class="row-auto justify-content-end d-flex align-content-center flex-wrap">
-      <nav class="navbar navbar-expand-lg navbar-expand-md navbar-light pt-3">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
-          <% if customer_signed_in? %>
-            <!--顧客ログイン時のヘッダー-->
-            <li class="m-3">
-              <%= link_to "マイページ", customer_path(current_customer), class: 'nav-link text-dark border border-secondary rounded' %>
-            </li>
-            <li class="m-3">
-              <%= link_to "いいね一覧", favorites_path(current_customer), class: 'nav-link text-dark border border-secondary rounded' %>
-            </li>
-            <li class="m-3">
-              <%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark border border-secondary rounded' %>
-            </li>
-            <li class="m-3">
-              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark border border-secondary rounded' %>
-            </li>
-          <% elsif admin_signed_in? %>
-            <!--管理者ログイン時のヘッダー-->
-            <li class="m-3">
-              <%= link_to "ユーザ一覧", admin_customers_path, class: 'nav-link text-dark border border-secondary rounded' %>
-            </li>
-            <li class="m-3">
-              <%= link_to "投稿一覧", admin_posts_path, class: 'nav-link text-dark border border-secondary rounded' %>
-            </li>
-              <li class="m-3">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark border border-secondary rounded' %>
-            </li>
-          <% else %>
-            <!--ログアウト時のヘッダー-->
-            <li class="m-3">
-              <%= link_to "About", about_path, class: 'nav-link text-center text-dark border border-secondary rounded', style: "width: 80px" %>
-            </li>
-            <li class="m-3">
-              <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark border border-secondary rounded' %>
-            </li>
-            <li class="m-3">
-              <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark border border-secondary rounded' %>
-            </li>
-          <% end %>
-          </ul>
-        </div>
-      </nav>
-      
-      <!--ウェルカムメッセージと検索窓-->
-      <div class="row justify-content-center align-items-center ml-5">
-        
-        <!--ウェルカムメッセージ-->
-        <% if customer_signed_in? %>
-          <h6 class="text-center my-0">ようこそ、<%= current_customer.name %>さん！</h6>
-        <% end %>
-        
-        <!--検索窓用ハンバーガーメニュー-->
-        <div class="navbar navbar-light pt-3 d-flex justify-content-start">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#searchDropdown" aria-controls="searchDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-search"></i>
-          </button>
-          
-          <!--検索窓-->
-          <div class="col-md-3 mx-5 collapse navbar-collapse" id="searchDropdown">
-            <%= render 'public/searches/search' %>
+<header class="sticky-top bg-white" style="border-bottom: 5px solid #d8d8d8">
+  
+  <% if current_customer %>
+  
+  <!--<div class="container">-->
+  
+  <div>
+    <ul>
+      <!--プロフィール用ドロップダウン-->
+      <li>
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" 
+                                            type="button" 
+                                            data-toggle="collapse"
+                                            data-target="#profileDropdown"
+                                            aria-controls="profileDropdown" 
+                                            aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="profileDropdown">
+          <h2>customer info</h2>
+          <div class="dropdown-item">
+            <%= render 'public/customers/info', customer: current_customer %>
           </div>
         </div>
-        
-        
-        
+      </li>
+      <!--投稿用ドロップダウン-->
+      <li>
+        <a class="navbar-toggler" 
+              type="button" 
+              data-toggle="collapse" 
+              data-target="#postDropdown" 
+              aria-controls="postDropdown" 
+              aria-expanded="false" 
+              aria-label="Toggle navigation">
+          
+          <i class="fas fa-pen"></i>
+        </a>
+        <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100" id="postDropdown">
+          <h2>New post</h2>
+          <div class="dropdown-item">
+            <%= render 'public/posts/form', post: @post %>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+  
+  
+    <!--プロフィール用ハンバーガーメニュー-->
+    <div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">
+      <button class="navbar-toggler" 
+              type="button" 
+              data-toggle="collapse" 
+              data-target="#profileDropdown" 
+              aria-controls="profileDropdown" 
+              aria-expanded="false" 
+              aria-label="Toggle navigation">
+        <i class="fas fa-user"></i>
+      </button>
+      
+      <!--プロフィール-->
+      <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100" id="profileDropdown">
+        <h2>customer info</h2>
+        <%= render 'public/customers/info', customer: current_customer %>
       </div>
     </div>
     
     
     
-  </div>
-  
-  
-  
-  <div class="container">
-  
-  <!--プロフィール用ハンバーガーメニュー-->
-  <div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#profileDropdown" aria-controls="profileDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="fas fa-user"></i>
-    </button>
     
-    <!--プロフィール-->
-    <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100" id="profileDropdown">
-      <h2>customer info</h2>
-      <%= render 'public/customers/info', customer: current_customer %>
+    <!--投稿用ハンバーガーメニュー-->
+    <div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">
+      <button class="navbar-toggler" 
+              type="button" 
+              data-toggle="collapse" 
+              data-target="#postDropdown" 
+              aria-controls="postDropdown" 
+              aria-expanded="false" 
+              aria-label="Toggle navigation">
+        <i class="fas fa-pen"></i>
+      </button>
+      
+      <!--投稿フォーム-->
+      <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100" id="postDropdown">
+        <h2>New post</h2>
+        <%= render 'public/posts/form', post: @post %>
+      </div>
     </div>
-  </div>
-  
-  <!--投稿用ハンバーガーメニュー-->
-  <div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#postDropdown" aria-controls="postDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="fas fa-pen"></i>
-    </button>
     
-    <!--投稿フォーム-->
-    <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100" id="postDropdown">
-      <h2>New post</h2>
-      <%= render 'public/posts/form', post: @post %>
-    </div>
-  </div>
+  <!--</div>-->
   
-  </div>
+  <% end %>
   
 </header>
