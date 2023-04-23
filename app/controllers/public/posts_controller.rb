@@ -4,14 +4,14 @@ class Public::PostsController < ApplicationController
   
   def index
     @posts = Post.all
-    @post = Post.new
+    @new_post = Post.new
   end
   
   def create
-    @post = Post.new(post_params)
-    @post.customer_id = current_customer.id
-    if @post.save
-      redirect_to post_path(@post), notice: "投稿に成功しました"
+    @new_post = Post.new(post_params)
+    @new_post.customer_id = current_customer.id
+    if @new_post.save
+      redirect_to post_path(@new_post), notice: "投稿に成功しました"
     else
       @posts = Post.all
       render :index
