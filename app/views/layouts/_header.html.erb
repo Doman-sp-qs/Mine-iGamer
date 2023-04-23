@@ -1,57 +1,9 @@
 <header class="sticky-top bg-white" style="border-bottom: 5px solid #d8d8d8">
   
   <% if current_customer %>
-  
-  <!--<div class="container">-->
-  
+  <!--customerログイン時のヘッダー-->
   <div>
     <ul class="list-group list-group-horizontal">
-      <!--プロフィール用ドロップダウン-->
-      <!--<li class="list-group-item flex-fill">-->
-      <!--  <div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">-->
-      <!--    <button class="navbar-toggler" -->
-      <!--            type="button" -->
-      <!--            data-toggle="collapse" -->
-      <!--            data-target="#profileDropdown" -->
-      <!--            aria-controls="profileDropdown" -->
-      <!--            aria-expanded="false" -->
-      <!--            aria-label="Toggle navigation">-->
-      <!--      <i class="fas fa-user"></i>-->
-      <!--    </button>-->
-          
-          <!--プロフィール-->
-      <!--    <div class="mx-5 collapse navbar-collapse position-absolute bg-light top-100 dropdown-menu"-->
-      <!--          style="width: 400px"-->
-      <!--          id="profileDropdown">-->
-      <!--      <h2>customer info</h2>-->
-      <!--      <%#= render 'public/customers/info', customer: current_customer %>-->
-      <!--    </div>-->
-      <!--  </div>-->
-      <!--</li>-->
-      
-      <!--投稿用ドロップダウン-->
-      <!--<li class="list-group-item flex-fill">-->
-      <!--  <div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">-->
-      <!--    <button class="navbar-toggler" -->
-      <!--            type="button" -->
-      <!--            data-toggle="collapse" -->
-      <!--            data-target="#postDropdown" -->
-      <!--            aria-controls="postDropdown" -->
-      <!--            aria-expanded="false" -->
-      <!--            aria-label="Toggle navigation">-->
-      <!--      <i class="fas fa-pen"></i>-->
-      <!--    </button>-->
-          
-          <!--投稿フォーム-->
-      <!--    <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100 dropdown-menu" -->
-      <!--          style="width: 400px"-->
-      <!--          id="postDropdown">-->
-      <!--      <h2>New post</h2>-->
-      <!--      <%#= render 'public/posts/form', post: @post %>-->
-      <!--    </div>-->
-      <!--  </div>-->
-      <!--</li>-->
-      
       <!--投稿用ドロップダウン-->
       <li class="list-group-item flex-fill">
         <div class="dropdown py-2 d-flex justify-content-start">
@@ -125,51 +77,11 @@
     </ul>
   </div>
   
-  
-  
-    <!--プロフィール用ハンバーガーメニュー-->
-    <!--<div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">-->
-    <!--  <button class="navbar-toggler" -->
-    <!--          type="button" -->
-    <!--          data-toggle="collapse" -->
-    <!--          data-target="#profileDropdown" -->
-    <!--          aria-controls="profileDropdown" -->
-    <!--          aria-expanded="false" -->
-    <!--          aria-label="Toggle navigation">-->
-    <!--    <i class="fas fa-user"></i>-->
-    <!--  </button>-->
-      
-      <!--プロフィール-->
-    <!--  <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100" id="profileDropdown">-->
-    <!--    <h2>customer info</h2>-->
-    <!--    <%#= render 'public/customers/info', customer: current_customer %>-->
-    <!--  </div>-->
-    <!--</div>-->
-    
-    
-    
-    
-    <!--投稿用ハンバーガーメニュー-->
-    <!--<div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">-->
-    <!--  <button class="navbar-toggler" -->
-    <!--          type="button" -->
-    <!--          data-toggle="collapse" -->
-    <!--          data-target="#postDropdown" -->
-    <!--          aria-controls="postDropdown" -->
-    <!--          aria-expanded="false" -->
-    <!--          aria-label="Toggle navigation">-->
-    <!--    <i class="fas fa-pen"></i>-->
-    <!--  </button>-->
-      
-      <!--投稿フォーム-->
-    <!--  <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100" id="postDropdown">-->
-    <!--    <h2>New post</h2>-->
-    <!--    <%#= render 'public/posts/form', post: @post %>-->
-    <!--  </div>-->
-    <!--</div>-->
-    
-  <!--</div>-->
-  
+  <% else %>
+  <!--管理者ログイン時、ログアウト時のヘッダー-->
+  <div style="height: 80px">
+    <!--空白-->
+  </div>
   <% end %>
   
 </header>

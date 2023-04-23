@@ -1,14 +1,14 @@
+<!--ヘッダー-->
+<%= render 'layouts/header' %>
 
-    <div class='col-md-3'>
-      <h2>customer info</h2>
-      <%= render 'public/customers/info', customer: current_customer %>
-      <h2 class="mt-3">New post</h2>
-      <%= render 'public/posts/form', post: @post %>
-    </div>
-    <div class='col-md-8 offset-md-1'>
-      <h2>posts</h2>
-      <%= render 'public/posts/index', posts: @favorite_posts %>
-    </div>
-    
-    
+<div class='col-md-3'>
+  <h2>customer info</h2>
+  <%= render 'public/customers/info', customer: current_customer %>
+  <h2 class="mt-3">New post</h2>
+  <%= render 'public/posts/form', post: @post %>
+</div>
+<div class='col-md-8 offset-md-1'>
+  <h2>posts</h2>
+  <%= render 'public/posts/index', posts: @favorite_posts %>
+</div>
 
