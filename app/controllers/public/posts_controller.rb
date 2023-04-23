@@ -3,7 +3,7 @@ class Public::PostsController < ApplicationController
   
   
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
     @new_post = Post.new
   end
   
@@ -13,7 +13,7 @@ class Public::PostsController < ApplicationController
     if @new_post.save
       redirect_to post_path(@new_post), notice: "投稿に成功しました"
     else
-      @posts = Post.all
+      @posts = Post.all.order(created_at: :desc)
       render :index
     end
   end
