@@ -5,88 +5,168 @@
   <!--<div class="container">-->
   
   <div>
-    <ul>
+    <ul class="list-group list-group-horizontal">
       <!--プロフィール用ドロップダウン-->
-      <li>
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" 
-                                            type="button" 
-                                            data-toggle="collapse"
-                                            data-target="#profileDropdown"
-                                            aria-controls="profileDropdown" 
-                                            aria-expanded="false">
-          <i class="fas fa-user"></i>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="profileDropdown">
-          <h2>customer info</h2>
-          <div class="dropdown-item">
-            <%= render 'public/customers/info', customer: current_customer %>
-          </div>
-        </div>
-      </li>
-      <!--投稿用ドロップダウン-->
-      <li>
-        <a class="navbar-toggler" 
-              type="button" 
-              data-toggle="collapse" 
-              data-target="#postDropdown" 
-              aria-controls="postDropdown" 
-              aria-expanded="false" 
-              aria-label="Toggle navigation">
+      <!--<li class="list-group-item flex-fill">-->
+      <!--  <div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">-->
+      <!--    <button class="navbar-toggler" -->
+      <!--            type="button" -->
+      <!--            data-toggle="collapse" -->
+      <!--            data-target="#profileDropdown" -->
+      <!--            aria-controls="profileDropdown" -->
+      <!--            aria-expanded="false" -->
+      <!--            aria-label="Toggle navigation">-->
+      <!--      <i class="fas fa-user"></i>-->
+      <!--    </button>-->
           
-          <i class="fas fa-pen"></i>
-        </a>
-        <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100" id="postDropdown">
-          <h2>New post</h2>
-          <div class="dropdown-item">
-            <%= render 'public/posts/form', post: @post %>
+          <!--プロフィール-->
+      <!--    <div class="mx-5 collapse navbar-collapse position-absolute bg-light top-100 dropdown-menu"-->
+      <!--          style="width: 400px"-->
+      <!--          id="profileDropdown">-->
+      <!--      <h2>customer info</h2>-->
+      <!--      <%#= render 'public/customers/info', customer: current_customer %>-->
+      <!--    </div>-->
+      <!--  </div>-->
+      <!--</li>-->
+      
+      <!--投稿用ドロップダウン-->
+      <!--<li class="list-group-item flex-fill">-->
+      <!--  <div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">-->
+      <!--    <button class="navbar-toggler" -->
+      <!--            type="button" -->
+      <!--            data-toggle="collapse" -->
+      <!--            data-target="#postDropdown" -->
+      <!--            aria-controls="postDropdown" -->
+      <!--            aria-expanded="false" -->
+      <!--            aria-label="Toggle navigation">-->
+      <!--      <i class="fas fa-pen"></i>-->
+      <!--    </button>-->
+          
+          <!--投稿フォーム-->
+      <!--    <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100 dropdown-menu" -->
+      <!--          style="width: 400px"-->
+      <!--          id="postDropdown">-->
+      <!--      <h2>New post</h2>-->
+      <!--      <%#= render 'public/posts/form', post: @post %>-->
+      <!--    </div>-->
+      <!--  </div>-->
+      <!--</li>-->
+      
+      <!--投稿用ドロップダウン-->
+      <li class="list-group-item flex-fill">
+        <div class="dropdown pt-3 d-flex justify-content-start">
+          <button class="btn btn-outline-secondary dropdown-toggle" 
+                  role="button"
+                  id="postDropdown"
+                  data-toggle="dropdown"
+                  aria-expanded="false">
+            <i class="fas fa-pen"></i>
+          </button>
+          
+          <!--投稿フォーム-->
+          <div class="dropdown-menu dropdown-menu-left" 
+                style="width: 400px"
+                aria-labelledby="postDropdown">
+            <h2>New post</h2>
+            <div class="dropdown-item">
+              <%= render 'public/posts/form', post: @post %>
+            </div>
           </div>
         </div>
       </li>
+      
+      <!--検索用ドロップダウン-->
+      <li class="list-group-item flex-fill">
+        <div class="dropdown pt-3 d-flex justify-content-start">
+          <button class="btn btn-outline-secondary dropdown-toggle" 
+                  role="button"
+                  id="searchDropdown"
+                  data-toggle="dropdown"
+                  aria-expanded="false">
+            <i class="fas fa-search"></i>
+          </button>
+          
+          <!--検索フォーム-->
+          <div class="dropdown-menu dropdown-center" 
+                style="width: 500px"
+                aria-labelledby="searchDropdown">
+            <h2>Search</h2>
+            <div class="dropdown-item">
+              <%= render 'public/searches/search' %>
+            </div>
+          </div>
+        </div>
+      </li>
+      
+      
+      <!--プロフィール用ドロップダウン-->
+      <li class="list-group-item flex-fill">
+        <div class="dropdown pt-3 d-flex justify-content-end">
+          <button class="btn btn-outline-secondary dropdown-toggle" 
+                  role="button"
+                  id="profileDropdown"
+                  data-toggle="dropdown"
+                  aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </button>
+          
+          <!--プロフィール-->
+          <div class="dropdown-menu dropdown-menu-right"
+                style="width: 400px"
+                aria-labelledby="profileDropdown">
+            <h2>customer info</h2>
+            <div class="dropdown-item">
+              <%= render 'public/customers/info', customer: current_customer %>
+            </div>
+          </div>
+        </div>
+      </li>
+      
     </ul>
   </div>
   
   
   
     <!--プロフィール用ハンバーガーメニュー-->
-    <div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">
-      <button class="navbar-toggler" 
-              type="button" 
-              data-toggle="collapse" 
-              data-target="#profileDropdown" 
-              aria-controls="profileDropdown" 
-              aria-expanded="false" 
-              aria-label="Toggle navigation">
-        <i class="fas fa-user"></i>
-      </button>
+    <!--<div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">-->
+    <!--  <button class="navbar-toggler" -->
+    <!--          type="button" -->
+    <!--          data-toggle="collapse" -->
+    <!--          data-target="#profileDropdown" -->
+    <!--          aria-controls="profileDropdown" -->
+    <!--          aria-expanded="false" -->
+    <!--          aria-label="Toggle navigation">-->
+    <!--    <i class="fas fa-user"></i>-->
+    <!--  </button>-->
       
       <!--プロフィール-->
-      <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100" id="profileDropdown">
-        <h2>customer info</h2>
-        <%= render 'public/customers/info', customer: current_customer %>
-      </div>
-    </div>
+    <!--  <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100" id="profileDropdown">-->
+    <!--    <h2>customer info</h2>-->
+    <!--    <%#= render 'public/customers/info', customer: current_customer %>-->
+    <!--  </div>-->
+    <!--</div>-->
     
     
     
     
     <!--投稿用ハンバーガーメニュー-->
-    <div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">
-      <button class="navbar-toggler" 
-              type="button" 
-              data-toggle="collapse" 
-              data-target="#postDropdown" 
-              aria-controls="postDropdown" 
-              aria-expanded="false" 
-              aria-label="Toggle navigation">
-        <i class="fas fa-pen"></i>
-      </button>
+    <!--<div class="navbar navbar-light pt-3 d-flex justify-content-end align-items-start position-relative">-->
+    <!--  <button class="navbar-toggler" -->
+    <!--          type="button" -->
+    <!--          data-toggle="collapse" -->
+    <!--          data-target="#postDropdown" -->
+    <!--          aria-controls="postDropdown" -->
+    <!--          aria-expanded="false" -->
+    <!--          aria-label="Toggle navigation">-->
+    <!--    <i class="fas fa-pen"></i>-->
+    <!--  </button>-->
       
       <!--投稿フォーム-->
-      <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100" id="postDropdown">
-        <h2>New post</h2>
-        <%= render 'public/posts/form', post: @post %>
-      </div>
-    </div>
+    <!--  <div class="col-md-3 mx-5 collapse navbar-collapse position-absolute bg-light top-100" id="postDropdown">-->
+    <!--    <h2>New post</h2>-->
+    <!--    <%#= render 'public/posts/form', post: @post %>-->
+    <!--  </div>-->
+    <!--</div>-->
     
   <!--</div>-->
   
