@@ -1,18 +1,16 @@
 
   
     
-    <!--ロゴ-->
-    <div class="row">
-      <a class="navbar-brand text-dark d-flex align-items-center ml-5" href="/">
-        <%#= image_tag('logo-30x30.png') %>
-        <h1>LOGO</h1>
-      </a>
-    </div>
+    
     
     <!--リンク一覧-->
     <div class="row justify-content-center" style="width: 200px">
-      
         
+        <!--ロゴ-->
+        <a class="navbar-brand text-dark d-flex align-items-center ml-5" href="/">
+          <%#= image_tag('logo-30x30.png') %>
+          <h1>LOGO</h1>
+        </a>
         <% if customer_signed_in? %>
           <!--顧客ログイン時のヘッダー-->
           <div class="m-1">
