@@ -6,7 +6,7 @@ class Public::FavoritesController < ApplicationController
     # ログイン中のアカウントがいいねした投稿内容を取得
     @favorite_posts = Post.find(favorites)
     # 新規投稿作成
-    @post = Post.new
+    @new_post = Post.new
   end
   
   def create
