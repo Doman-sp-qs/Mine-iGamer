@@ -1,14 +1,24 @@
-<!--ヘッダー-->
-<%= render 'layouts/header' %>
-
-<div>
-  <%= render 'info', customer: @customer %>
+<!--上部固定-->
+<div class="sticky-top">
+  <!--ヘッダー-->
+  <%= render 'layouts/header' %>
+  
+  <!--プロフィール-->
+  <div class="pt-4 pb-3 mx-4 bg-white" style="border-bottom: 3px solid #d8d8d8;">
+    <%= render 'info', customer: @customer %>
+  </div>
 </div>
-<div>
-  <h3 class="text-center text-secondary mt-2">
+
+<!--ページタイトルと投稿一覧-->
+<div class="mt-3">
+  <!--ページタイトル-->
+  <h4 class="text-center text-secondary">
     <%= @customer.name %> さんの投稿一覧
     <i class="fas fa-mail-bulk"></i>
-  </h3>
-  <%= render 'public/posts/index', posts: @posts %>
+  </h4>
+  <!--投稿一覧-->
+  <div class="mx-4">
+    <%= render 'public/posts/index', posts: @posts %>
+  </div>
 </div>
 

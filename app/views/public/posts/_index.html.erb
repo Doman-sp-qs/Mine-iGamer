@@ -2,16 +2,16 @@
   <div class="card mt-3">
     <% if current_admin %>
       <div class="row">
-        <div class="col-2 text-center">
+        <div class="col-md-2 text-center">
           <%= link_to(admin_customer_path(post.customer_id)) do %>
             <%= image_tag post.customer.get_profile_image(100,100) %><br>
           <% end %>
         </div>
-        <div class="col-10 mt-4">
+        <div class="col-md-10 mt-4">
           <h6><%= link_to post.customer.name, admin_customer_path(post.customer_id), class:"text-body" %></h6>
           
           <div class="row mt-2">
-            <div class="col-9">
+            <div class="col-md-9">
               <h4><%= post.game_name %></h4>
               <h5>
                 <%= link_to post.title, admin_post_path(post.id), class:"text-body" %>
@@ -19,7 +19,7 @@
               <h6 class="py-3" style="border-top: 2px solid #d8d8d8; border-bottom: 2px solid #d8d8d8;"><%= post.body %></h6>
               <p class="text-right"><%= post.created_at.strftime('%Y/%m/%d　%H:%M') %></p>
             </div>
-            <div class="col-3">
+            <div class="col-md-3">
               
               <table>
                 <tr>
@@ -38,16 +38,16 @@
       </div>
     <% else %>
       <div class="row">
-        <div class="col-2 text-center">
+        <div class="col-md-2 text-center">
           <%= link_to(customer_path(post.customer_id)) do %>
             <%= image_tag post.customer.get_profile_image(100,100) %><br>
           <% end %>
         </div>
-        <div class="col-10 mt-4">
+        <div class="col-md-10 mt-4">
           <h6><%= link_to post.customer.name, customer_path(post.customer_id), class:"text-body" %></h6>
           
           <div class="row mt-2">
-            <div class="col-9">
+            <div class="col-md-9">
               <h4><%= post.game_name %></h4>
               <h5>
                 <%= link_to post.title, post_path(post.id), class:"text-body" %>
@@ -55,7 +55,7 @@
               <h6 class="py-3" style="border-top: 2px solid #d8d8d8; border-bottom: 2px solid #d8d8d8;"><%= post.body %></h6>
               <p class="text-right"><%= post.created_at.strftime('%Y/%m/%d　%H:%M') %></p>
             </div>
-            <div class="col-3">
+            <div class="col-md-3 pl-0">
             
               <div id="favorite-btn_<%= post.id %>">
                 <%= render 'public/favorites/favorite-btn', post: post %>
