@@ -1,26 +1,9 @@
 <div class="container">
 <% if customers.exists?(customers) %>
   <% customers.each do |customer| %>
-    <table class='table table-hover table-inverse'>
-      <thead>
-        <tr>
-          <th>image</th>
-          <th>name</th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%#= image_tag customer.get_profile_image, size: '40x40' %>image</td>
-          <td><%= customer.name %></td>
-          <td>フォロー <strong><%= customer.followings.count %></strong> 人</td>
-          <td>フォロワー <strong><%= customer.followers.count %></strong> 人</td>
-          <td><%= link_to 'Show', customer %></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="card my-3">
+      <%= render 'public/customers/info', customer: customer %>
+    </div>
   <% end %>
 <% else %>
   <p>ユーザーはいません</p>

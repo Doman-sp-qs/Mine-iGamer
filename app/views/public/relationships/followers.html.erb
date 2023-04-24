@@ -1,3 +1,12 @@
-<h2>Follow customers</h2>
+<!--ヘッダー-->
+<%= render 'layouts/header' %>
+
+<!--ページタイトル-->
+<h2 class="text-center text-secondary mt-2">
+  フォロワー一覧
+  <i class="fas fa-mail-bulk"></i>
+</h2>
+
+<!--ユーザ一覧-->
 <%= render 'follow_list', customers: @customers %>
 

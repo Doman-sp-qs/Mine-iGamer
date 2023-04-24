@@ -20,6 +20,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    # @post_comments = PostComment.all.order(created_at: :desc)
     @customer = Customer.find(@post.customer_id)
     @new_post = Post.new
     @post_comment = PostComment.new

@@ -3,7 +3,6 @@
     <table class="table table-hover table-inverse">
       <tbody>
         <% if @range == "Customer" %>
-        
           <!--検索対象モデルがCustomerの時 -->
           <% @customers.each do |customer| %>
             <%= render 'public/customers/index', customers: @customers %>

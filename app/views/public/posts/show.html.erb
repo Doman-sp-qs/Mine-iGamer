@@ -1,61 +1,102 @@
 <!--ヘッダー-->
-<%= render 'layouts/header' %>
+<div class="sticky-top" style="z-index: 10;">
+  <%= render 'layouts/header' %>
+</div>
 
-<div>
-  <h2>User info</h2>
+<!--プロフィール-->
+<div class="pt-4 pb-3 mx-4 bg-white" style="border-bottom: 3px solid #d8d8d8;">
   <%= render 'public/customers/info', customer: @customer %>
 </div>
-<div>
-  <h2>post detail</h2>
-  <table class='table'>
-    <thead>
-      <tr>
-        <th></th>
-        <th>Game Title</th>
-        <th>Title</th>
-        <th>Opinion</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
+
+<!--ページタイトルと投稿一覧-->
+<div class="sticky-top mt-3" style="z-index: 1;">
+  <!--ページタイトル-->
+  <h4 class="text-center text-secondary py-4">
+    <i class="fas fa-mail-bulk"></i>
+  </h4>
+  <!--投稿詳細-->
+  <div class="mx-4">
+    <div class="card">
+      <div class="row">
+        <!--投稿者のプロフィール画像-->
+        <div class="col-md-2 text-right mt-2">
           <%= link_to(customer_path(@post.customer_id)) do %>
             <%= image_tag @post.customer.get_profile_image(100,100) %><br>
-            <%= @post.customer.name %>
           <% end %>
-        </td>
-        <td><%= link_to @post.game_name, post_path(@post.id) %></td>
-        <td><%= link_to @post.title, post_path(@post.id) %></td>
-        <td><%= @post.body %></td>
-        
-        <% if current_admin %>
-          <td>
-            いいね <strong><%= @post.favorites.count %></strong> 件
-            コメント <strong><%= @post.post_comments.count %></strong> 件
-          </td>
-        <% else %>
-          <td>
-            <div id="favorite-btn_<%= @post.id %>">
-              <%= render 'public/favorites/favorite-btn', post: @post %>
+        </div>
+        <!--投稿者の名前、投稿内容、アクションボタン-->
+        <div class="col-md-10 mt-4 pl-0">
+          <!--投稿者の名前-->
+          <h6>
+            <%= link_to @post.customer.name, customer_path(@post.customer_id), class:"text-body" %>
+          </h6>
+          <!--投稿内容とアクションボタン-->
+          <div class="row mt-2">
+            <!--投稿内容-->
+            <div class="col-md-9">
+              <h4><%= @post.game_name %></h4>
+              <h5>
+                <%= link_to @post.title, post_path(@post.id), class:"text-body" %>
+              </h5>
+              <h6 class="py-3" style="border-top: 2px solid #d8d8d8; border-bottom: 2px solid #d8d8d8;">
+                <%= @post.body %>
+              </h6>
+              <p class="text-right"><%= @post.created_at.strftime('%Y/%m/%d　%H:%M') %></p>
             </div>
-            コメント <strong><%= @post.post_comments.count %></strong> 件
-          </td>
-        <% end %>
-        
-        <% if current_admin || @post.customer_id == current_customer.id %>
-          <td><%= link_to 'Edit', edit_post_path(@post), class: "btn btn-sm btn-success" %></td>
-          <td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-        <% end %>
-      </tr>
-    </tbody>
-  </table>
-  <div class="mt-5">
-    <%= render 'public/post_comments/index', post: @post %>
-    <%= form_with model: [@post, @post_comment] do |f| %>
-      <%= f.label 'コメント' %><br />
-      <%= f.text_area :post_comment, class: 'form-control' %><br />
-      <%= f.submit "送信" %>
-    <% end %>
+            <!--アクションボタン-->
+            <div class="col-md-3 pl-0 text-center">
+              <!--いいねボタン-->
+              <div id="favorite-btn_<%= @post.id %>">
+                <%= render 'public/favorites/favorite-btn', post: @post %>
+              </div>
+              <!--コメントボタン-->
+              <div class="mt-2">
+                <%= link_to  post_path(@post.id), class:"btn text-dark border border-secondary rounded", style:"width: 130px" do %>
+                  <span>コメント</span>
+                  <i class="fas fa-reply"></i><%= @post.post_comments.count %>
+                <% end %>
+              </div>
+              <!--管理者と投稿者用ボタン-->
+              <% if current_admin || @post.customer_id == current_customer.id %>
+                <div class="mt-2">
+                  <%= link_to '編集',
+                              edit_post_path(@post),
+                              class: "btn btn-sm btn-success rounded",
+                              style:"width: 100px;"
+                  %>
+                </div>
+                <div class="my-2">
+                  <%= link_to 'Destroy',
+                              @post, method: :delete,
+                              data: { confirm: '本当に消しますか？' },
+                              class: "btn btn-sm btn-danger rounded",
+                              style:"width: 100px;"
+                  %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<!--コメント関連-->
+<div class="m-5">
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <%= render 'public/post_comments/index', post: @post %>
+    </div>
+    
+    <div class="col-md-6">
+      <%= form_with model: [@post, @post_comment] do |f| %>
+        <%= f.label 'コメント' %><br />
+        <%= f.text_area :post_comment, class: 'form-control' %><br />
+        <%= f.submit "送信" %>
+      <% end %>
+    </div>
+    
+  </div>
+</div>
+
