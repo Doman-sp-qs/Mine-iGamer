@@ -1,0 +1,11 @@
+<div class="container">
+<% if customers.exists?(customers) %>
+  <% customers.each do |customer| %>
+    <div class="card my-3">
+      <%= render 'public/customers/info', customer: customer %>
+    </div>
+  <% end %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
+</div>
