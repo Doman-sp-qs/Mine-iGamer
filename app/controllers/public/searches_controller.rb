@@ -11,7 +11,10 @@ class Public::SearchesController < ApplicationController
     else
       # 検索項目がCustomer以外の時のデータ取得
       @posts = Post.looks(params[:search], params[:word])
-    end  
+    end
+    
+    # 新規投稿用
+    @new_post = Post.new
   end
   
 end

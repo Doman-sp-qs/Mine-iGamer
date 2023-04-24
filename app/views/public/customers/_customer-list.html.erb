@@ -1,11 +1,12 @@
-<div class="container">
+<!--該当する顧客の有無判定-->
 <% if customers.exists?(customers) %>
+  <!--該当する顧客がいるとき-->
   <% customers.each do |customer| %>
     <div class="card my-3">
       <%= render 'public/customers/info', customer: customer %>
     </div>
   <% end %>
 <% else %>
-  <p>ユーザーはいません</p>
+  <!--該当する顧客がいないとき-->
+  <h3 class="m-5">ユーザはいません</h3>
 <% end %>
-</div>
