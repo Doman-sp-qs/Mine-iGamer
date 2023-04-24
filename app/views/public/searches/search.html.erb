@@ -4,14 +4,10 @@
       <tbody>
         <% if @range == "Customer" %>
           <!--検索対象モデルがCustomerの時 -->
-          <% @customers.each do |customer| %>
-            <%= render 'public/customers/index', customers: @customers %>
-          <% end %>
+          <%= render 'public/customers/index', customers: @customers %>
         <% else %>
         <!--検索対象モデルがCustomerではない時(= 検索対象モデルがPostの時) -->
-          <% @posts.each do |post| %>
-            <%= render 'public/posts/index', posts: @posts %>
-          <% end %>
+          <%= render 'public/posts/index', posts: @posts %>
         <% end %>
       </tbody>
     </table>
