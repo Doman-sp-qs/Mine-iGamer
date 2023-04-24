@@ -1,16 +1,24 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
-
-
-<div class='container px-5 px-sm-0'>
-  <div class='row'>
-    <div class='col-md-3'>
-      <h2>Customer info</h2>
-      <%= render 'public/customers/info', customer: @customer %>
-    </div>
-    <div class='col-md-8 offset-md-1'>
-      <h2>posts</h2>
-      <%= render 'public/posts/index', posts: @posts %>
-    </div>
+<!--上部固定-->
+<div class="sticky-top">
+  <!--ヘッダー-->
+  <%= render 'layouts/header' %>
+  
+  <!--プロフィール-->
+  <div class="pt-4 pb-3 mx-4 bg-white" style="border-bottom: 3px solid #d8d8d8;">
+    <%= render 'public/customers/info', customer: @customer %>
   </div>
 </div>
+
+<!--ページタイトルと投稿一覧-->
+<div class="mt-3">
+  <!--ページタイトル-->
+  <h4 class="text-center text-secondary">
+    <%= @customer.name %> さんの投稿一覧
+    <i class="fas fa-mail-bulk"></i>
+  </h4>
+  <!--投稿一覧-->
+  <div class="mx-4">
+    <%= render 'public/posts/index', posts: @posts %>
+  </div>
+</div>
+
