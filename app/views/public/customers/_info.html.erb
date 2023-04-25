@@ -1,13 +1,15 @@
 <div class="py-3">
   <!--名前-->
   <div class="ml-4">
-    <h4><%= customer.name %></h4>
+    <h4><%= link_to customer.name, customer_path(customer.id), class:"text-body" %></h4>
   </div>
   <!--名前以外-->
   <div class="row mx-3 my-3">
     <!--プロフィール画像-->
     <div class="col-md-3 text-center">
-      <%= image_tag customer.get_profile_image(150,150) %>
+      <%= link_to(customer_path(customer.id)) do %>
+        <%= image_tag customer.get_profile_image(150,150) %>
+      <% end %>
     </div>
     <!--名前、画像以外-->
     <div class="col-md-3">
