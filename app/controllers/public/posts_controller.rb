@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :customer_is_stopping?, only: [:index]
-  
+  before_action :ensure_correct_post_customer, only: [:edit, :update, :destroy]
   
   def index
     @posts = Post.all.order(created_at: :desc)
@@ -51,5 +51,15 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:game_name, :title, :body)
   end
+  
+  # ユーザ特定用
+  def ensure_correct_post_customer
+    post = Post.find(params[:id])
+    if current_customer.id != post.customer_id
+      flash[:notice] = "権限がありません"
+      redirect_to post_path(post)
+    end
+  end
+  
   
 end
