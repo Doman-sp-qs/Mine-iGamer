@@ -1,5 +1,45 @@
 <!--ヘッダー-->
 <%= render 'layouts/header' %>
 
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<!--メインの内容-->
+<div class="row">
+  <div class="col-md-1">
+    
+  </div>
+  <div class="col-md-10 px-0">
+    <!--アプリケーション名とトップメッセージ-->
+    <div class="row mt-4 text-center">
+      <!--アプリケーション名-->
+      <div class="col-md-4">
+        <h1>
+          <i class="fas fa-gamepad fa-lg text-secondary"></i>
+        </h1>
+      </div>
+      <div class="col-md-4">
+        <h1>iGamer</h1>
+      </div>
+      <div class="col-md-4">
+        <h1>
+          <i class="fas fa-gamepad fa-lg text-secondary"></i>
+        </h1>
+      </div>
+      
+      <!--トップメッセージ-->
+      <div class="col-md-12 my-3 text-center" style="border-top: 1px solid #d8d8d8;
+                                                     border-right: 3px solid #d8d8d8;
+                                                     border-bottom: 3px solid #d8d8d8;
+                                                     border-left: 1px solid #d8d8d8;">
+        <%= image_tag('投稿一覧スクショ_60x60.jpg') %>
+      </div>
+    </div>
+    
+    <!--ゲストログイン案内-->
+    <div class="mt-2 text-center">
+      <h6>使ってみる</h6>
+      <%= link_to 'ゲストログイン', customers_guest_sign_in_path, method: :post, class:"btn text-dark border border-secondary rounded" %>
+    </div>
+  </div>
+  <div class="col-md-1">
+    
+  </div>
+</div>
