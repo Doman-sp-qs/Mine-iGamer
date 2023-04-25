@@ -19,6 +19,12 @@
   <!--投稿一覧-->
   <div class="mx-4">
     <%= render 'public/posts/index', posts: @posts %>
+    
+    <!--該当する投稿の有無判定-->
+    <% unless @posts.exists?(@posts) %>
+      <!--該当する投稿がないとき-->
+      <h3 class="m-5">投稿はありません</h3>
+    <% end %>
   </div>
 </div>
 

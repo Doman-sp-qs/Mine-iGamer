@@ -2,9 +2,9 @@ class Public::FavoritesController < ApplicationController
   
   def index
     # ログイン中のアカウントがいいねした投稿のidを取得
-    favorites = Favorite.where(customer_id: current_customer.id).pluck(:post_id)
+    @favorites = Favorite.where(customer_id: current_customer.id).pluck(:post_id)
     # ログイン中のアカウントがいいねした投稿内容を取得
-    @favorite_posts = Post.find(favorites)
+    @favorite_posts = Post.find(@favorites)
     # 新規投稿作成
     @new_post = Post.new
   end

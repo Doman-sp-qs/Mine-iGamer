@@ -81,3 +81,9 @@
     <% end %>
   </div>
 <% end %>
+
+<!--該当する投稿の有無判定-->
+<% unless post.post_comments.exists?(post.post_comments) %>
+  <!--該当する投稿がないとき-->
+  <h4 class="m-5">コメントはありません</h4>
+<% end %>
