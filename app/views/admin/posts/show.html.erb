@@ -1,54 +1,96 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<!--ヘッダー-->
+<div class="sticky-top" style="z-index: 10;">
+  <%= render 'layouts/header' %>
+</div>
 
-<div class='container'>
-  <div class='row'>
-    <div class='col-md-3'>
-      <h2>User info</h2>
-      <%= render 'public/customers/info', customer: @customer %>
-    </div>
-    <div class='col-md-8 offset-md-1'>
-  		<h2>post detail</h2>
-  		<table class='table'>
-  		  <tr>
-          <td>
-            <%= link_to(admin_customer_path(@post.customer_id)) do %>
-              <%#= image_tag @post.customer.get_profile_image, size:"100x100" %><br>
-              <%= @post.customer.name %>
-            <% end %>
-          </td>
-          <td><%= link_to @post.title, admin_post_path(@post.id) %></td>
-          <td><%= @post.body %></td>
-          
-          <% if current_admin %>
-            <td>
-              いいね <strong><%= @post.favorites.count %></strong> 件
-            </td>
-          <% else %>
-            <td id="favorite-btn_<%= @post.id %>">
-              <%= render 'public/favorites/favorite-btn', post: @post %>
-            </td>
+<!--プロフィール-->
+<div class="pt-4 pb-3 mx-4 bg-white" style="border-bottom: 3px solid #d8d8d8;">
+  <%= render 'public/customers/info', customer: @customer %>
+</div>
+
+<!--ページタイトルと投稿一覧-->
+<div class="sticky-top mt-3" style="z-index: 1;">
+  <!--ページタイトル-->
+  <h4 class="text-center text-secondary py-4">
+    <i class="fas fa-mail-bulk"></i>
+  </h4>
+  <!--投稿詳細-->
+  <div class="mx-4">
+    <div class="card">
+      <div class="row">
+        <!--投稿者のプロフィール画像-->
+        <div class="col-md-2 text-right mt-2">
+          <%= link_to(admin_customer_path(@post.customer_id)) do %>
+            <%= image_tag @post.customer.get_profile_image(100,100) %><br>
           <% end %>
-          
-          <td>
-            コメント <strong><%= @post.post_comments.count %></strong> 件
-          </td>
-          <% if current_admin || @post.customer_id == current_customer.id %>
-            <td><%= link_to 'Edit', edit_admin_post_path(@post), class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to 'Destroy', admin_post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-          <% end %>
-        </tr>
-      </table>
-      <div class="mt-5">
-        <%= render 'public/post_comments/index', post: @post %>
-        <% if current_admin == nil %>
-          <%= form_with model: [@post, @post_comment] do |f| %>
-            <%= f.label 'コメント' %><br />
-            <%= f.text_area :post_comment, class: 'form-control' %><br />
-            <%= f.submit "送信" %>
-          <% end %>
-        <% end %>
+        </div>
+        <!--投稿者の名前、投稿内容、アクションボタン-->
+        <div class="col-md-10 mt-4 pl-0">
+          <!--投稿者の名前-->
+          <h6>
+            <%= link_to @post.customer.name, admin_customer_path(@post.customer_id), class:"text-body" %>
+          </h6>
+          <!--投稿内容とアクションボタン-->
+          <div class="row mt-2">
+            <!--投稿内容-->
+            <div class="col-md-9">
+              <h4><%= @post.game_name %></h4>
+              <h5>
+                <%= link_to @post.title, admin_post_path(@post.id), class:"text-body" %>
+              </h5>
+              <h6 class="py-3" style="border-top: 2px solid #d8d8d8; border-bottom: 2px solid #d8d8d8;">
+                <%= @post.body %>
+              </h6>
+              <p class="text-right"><%= @post.created_at.strftime('%Y/%m/%d　%H:%M') %></p>
+            </div>
+            <!--アクション件数-->
+            <div class="col-md-3 pl-0 text-center">
+              <table class="mx-auto">
+                <tr>
+                  <td class="text-left">いいね</td>
+                  <td><strong><%= @post.favorites.count %></strong> 件</td>
+                </tr>
+                <tr>
+                  <td>コメント</td>
+                  <td><strong><%= @post.post_comments.count %></strong> 件</td>
+                </tr>
+              </table>
+              <!--管理者と投稿者用ボタン-->
+              <% if current_admin || @post.customer_id == current_customer.id %>
+                <div class="mt-2">
+                  <%= link_to '編集',
+                              edit_admin_post_path(@post),
+                              class: "btn btn-sm btn-success rounded",
+                              style:"width: 100px;"
+                  %>
+                </div>
+                <div class="my-2">
+                  <%= link_to '削除',
+                              admin_post_path(@post),
+                              method: :delete,
+                              data: { confirm: '本当に消しますか？' },
+                              class: "btn btn-sm btn-danger rounded",
+                              style:"width: 100px;"
+                  %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<!--コメント関連-->
+<div class="mx-5 mt-3">
+  <div class="mx-auto">
+    <!--コメント見出し-->
+    <h4 class="text-center text-secondary">
+      コメント一覧<i class="fas fa-mail-bulk"></i>
+    </h4>
+    <!--コメント一覧-->
+    <%= render 'public/post_comments/index', post: @post %>
+  </div>
+</div>
+
