@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :ensure_correct_customer, only: [:edit, :update, :destroy]
   
   def show
     @customer = Customer.find(params[:id])
@@ -23,6 +24,14 @@ class Public::CustomersController < ApplicationController
   
   def customer_params
     params.require(:customer).permit(:name, :introduction, :profile_image)
+  end
+  
+  # ユーザ特定用
+  def ensure_correct_customer
+    if current_customer.id != params[:id].to_i
+      flash[:notice] = "権限がありません"
+      redirect_to posts_path
+    end
   end
   
   

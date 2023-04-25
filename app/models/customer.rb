@@ -22,14 +22,16 @@ class Customer < ApplicationRecord
   validates :name, presence: true, length: {minimum: 2, maximum: 20}, uniqueness: true
   validates :introduction, length: {maximum: 160}
   
+  # プロフィール画像の取得、サイズ変更用
   def get_profile_image(width, height)
     unless profile_image.attached?
+      # プロフィール画像が設定されていない時
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       profile_image.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpeg')
     end
+    # プロフィール画像のサイズ変更用
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
-  
   
   # フォローフォロワー機能
   def follow(customer_id)
@@ -46,7 +48,6 @@ class Customer < ApplicationRecord
   
   # customerの利用停止ステータスの判定
   def is_stopping?(customer)
-    
     customers.exists?(is_stopping: true)
   end
   

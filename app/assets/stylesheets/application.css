@@ -13,7 +13,3 @@
  *= require_tree .
  *= require_self
  */
-.bg-image {
-  background-image: url('/iGamer/app/assets/images/game-controllers.jpg');
-  height: 600px;
-}
