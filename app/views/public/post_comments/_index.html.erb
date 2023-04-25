@@ -27,7 +27,7 @@
             </div>
             <div class="col-md-4">
               <%= link_to '削除',
-                          post_post_comment_path(post_comment.post, post_comment),
+                          admin_post_post_comment_path(post_comment.post, post_comment),
                           method: :delete, data: { confirm: '本当に消しますか？' },
                           class: "btn btn-sm btn-danger"
               %>

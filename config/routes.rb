@@ -62,7 +62,10 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :edit, :update]
     post "customers/:id/is_stop" => "is_stop_statuses#create", as: "customer_is_stop"
     delete "customers/:id/is_stop" => "is_stop_statuses#destroy", as: "customer_is_restart"
-    resources :posts, only: [:show, :edit, :update, :destroy]
+    resources :posts, only: [:show, :edit, :update, :destroy] do
+      # コメント削除機能
+      resources :post_comments, only: [:destroy]
+    end
   end
   
   ## その他
