@@ -1,10 +1,20 @@
 <!--該当する顧客の有無判定-->
 <% if customers.exists?(customers) %>
   <!--該当する顧客がいるとき-->
-  <% customers.each do |customer| %>
-    <div class="card my-3">
-      <%= render 'public/customers/info', customer: customer %>
-    </div>
+  <% if current_customer %>
+    <!--顧客用表示内容-->
+    <% customers.each do |customer| %>
+      <div class="card my-3">
+        <%= render 'public/customers/info', customer: customer %>
+      </div>
+    <% end %>
+  <% else %>
+    <!--管理者用表示内容-->
+    <% customers.each do |customer| %>
+      <div class="card my-3">
+        <%= render 'admin/customers/info', customer: customer %>
+      </div>
+    <% end %>
   <% end %>
 <% else %>
   <!--該当する顧客がいないとき-->
