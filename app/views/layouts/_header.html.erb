@@ -17,9 +17,9 @@
           
           <!--投稿フォーム-->
           <div class="dropdown-menu dropdown-menu-left" 
-                style="width: 400px"
+                style="width: 370px"
                 aria-labelledby="postDropdown">
-            <h2>New post</h2>
+            <h2 class="text-center text-secondary mt-2">新規投稿</h2>
             <div class="m-3">
               <%= render 'public/posts/form', post: @new_post %>
             </div>
@@ -40,9 +40,9 @@
           
           <!--検索フォーム-->
           <div class="dropdown-menu dropdown-center" 
-                style="width: 500px"
+                style="width: 300px"
                 aria-labelledby="searchDropdown">
-            <h2>Search</h2>
+            <h2 class="text-secondary mt-2 ml-3">検索</h2>
             <div class="m-3">
               <%= render 'public/searches/search' %>
             </div>
