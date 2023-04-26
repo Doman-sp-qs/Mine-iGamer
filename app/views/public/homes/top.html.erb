@@ -38,13 +38,17 @@
       <%= image_tag('controllers.jpg') %>
     </div>
     
-    <!--ゲストログイン案内-->
-    <div class="mt-3 text-center">
-      <h5>使ってみる</h5>
-      <%= link_to 'ゲストログイン', customers_guest_sign_in_path, method: :post, 
-                                    class:"btn btn-lg text-dark border border-secondary rounded",
-                                    style:"width: 200px;" %>
-    </div>
+    <!--ログインしてない時のみ表示-->
+    <% unless customer_signed_in? || admin_signed_in? %>
+      <!--ゲストログイン案内-->
+      <div class="mt-3 text-center">
+        <h5>使ってみる</h5>
+        <%= link_to 'ゲストログイン', customers_guest_sign_in_path, method: :post, 
+                                      class:"btn btn-lg text-dark border border-secondary rounded",
+                                      style:"width: 200px;" %>
+      </div>
+    <% end %>
+    
   </div>
   <div class="col-md-1">
     

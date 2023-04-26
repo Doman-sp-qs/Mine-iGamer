@@ -33,11 +33,14 @@
       </div>
     </div>
     
-    <!--ゲストログイン案内-->
-    <div class="mt-2 text-center">
-      <h6>使ってみる</h6>
-      <%= link_to 'ゲストログイン', customers_guest_sign_in_path, method: :post, class:"btn text-dark border border-secondary rounded" %>
-    </div>
+    <!--ログインしてない時のみ表示-->
+    <% unless customer_signed_in? || admin_signed_in? %>
+      <!--ゲストログイン案内-->
+      <div class="mt-2 text-center">
+        <h6>使ってみる</h6>
+        <%= link_to 'ゲストログイン', customers_guest_sign_in_path, method: :post, class:"btn text-dark border border-secondary rounded" %>
+      </div>
+    <% end %>
   </div>
   <div class="col-md-1">
     
