@@ -28,12 +28,15 @@
 - 気になるゲームについて知りたいとき
 
 
-###利用規約
+### 利用規約
 - ゲーム画像の使用は行わないこと。
 
 
 ## 設計書
-未作成
+- [ER図](https://docs.google.com/spreadsheets/d/152X6EXEe4xCwZWEmmrYkTsx6XcDe38rVHxwnc6p0KeA/edit?usp=sharing)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1mx-82cneJBeJRRYPruhj7nvMI6NJfffLlfHzaXXf5FQ/edit?usp=sharing)
+- [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1Zhm4B6Ecs40HEcjgHxbxN-7PsHqQLWy28QUtqeuUE5o/edit?usp=sharing)
+
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -42,4 +45,4 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-<!--## 使用素材-->
+## 使用素材
