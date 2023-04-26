@@ -12,7 +12,7 @@
 <%= render 'public/posts/index', posts: @favorite_posts %>
 
 <!--該当する投稿の有無判定-->
-<% unless @favorite_posts.include?(@favorite_posts) %>
+<% if @favorite_posts == [] %>
   <!--該当する投稿がないとき-->
-  <h3 class="m-5">投稿はありません</h3>
+  <h3 class="m-5">いいねした投稿はありません</h3>
 <% end %>
