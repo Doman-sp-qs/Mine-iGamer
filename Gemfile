@@ -59,11 +59,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 
-
-gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
+# MySQLを利用するために必要なgem
+# gem 'dotenv-rails'
+# group :production do
+#   gem 'mysql2'
+# end
 
 
 gem "net-smtp"
