@@ -1,4 +1,6 @@
+<!--投稿フォーム-->
 <%= form_with model:post,local:true do |f| %>
+  <!--投稿時のエラー表示-->
   <%= render "layouts/errors", obj: post %>
   <div class="form-group">
     <%= f.label :game_name, "ゲームタイトル" %>

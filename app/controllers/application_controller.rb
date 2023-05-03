@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
   
   
   protected
-  
+  # パラメータの許可
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end

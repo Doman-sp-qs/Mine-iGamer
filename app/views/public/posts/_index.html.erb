@@ -18,22 +18,30 @@
           <!--投稿内容-->
           <div class="row mt-2">
             <div class="col-md-9">
+              <!--ゲームタイトル-->
               <h4><%= post.game_name %></h4>
+              <!--投稿タイトル-->
               <h5>
                 <%= link_to post.title, admin_post_path(post.id), class:"text-body" %>
               </h5>
-              <h6 class="py-3" style="border-top: 2px solid #d8d8d8; border-bottom: 2px solid #d8d8d8;"><%= post.body %></h6>
-              <p class="text-right"><%= post.created_at.strftime('%Y/%m/%d　%H:%M') %></p>
+              <!--投稿内容-->
+              <h6 class="py-3" style="border-top: 2px solid #d8d8d8; border-bottom: 2px solid #d8d8d8;">
+                <%= post.body %>
+              </h6>
+              <!--投稿日時-->
+              <p class="text-right">
+                <%= post.created_at.strftime('%Y/%m/%d　%H:%M') %>
+              </p>
             </div>
+            <!--投稿に対するアクション件数表示-->
             <div class="col-md-3">
-              <!--各種アクションの件数-->
               <table>
-                <!--いいね-->
+                <!--いいね件数-->
                 <tr>
                   <td>いいね</td>
                   <td><strong><%= post.favorites.count %></strong> 件</td>
                 </tr>
-                <!--コメント-->
+                <!--コメント件数-->
                 <tr>
                   <td>コメント</td>
                   <td><strong><%= post.post_comments.count %></strong> 件</td>
@@ -43,8 +51,9 @@
           </div>
         </div>
       </div>
-    <!--顧客ログイン時の表示内容-->
+      
     <% else %>
+      <!--顧客ログイン時の表示内容-->
       <div class="row">
         <!--投稿者のプロフィール画像-->
         <div class="col-md-2 text-right mt-2">
@@ -58,7 +67,7 @@
           <h6>
             <%= link_to post.customer.name, customer_path(post.customer_id), class:"text-body" %>
           </h6>
-          <!--投稿内容とアクションボタン-->
+          <!--投稿内容詳細とアクションボタン-->
           <div class="row mt-2">
             <!--投稿内容-->
             <div class="col-md-9">

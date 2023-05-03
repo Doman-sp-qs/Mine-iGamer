@@ -5,6 +5,7 @@
   </div>
 </header>
 
+<!--プロフィール表示-->
 <div class="card">
   <div class="row">
     <!--投稿者のプロフィール画像-->
@@ -18,25 +19,33 @@
       <h6>
         <%= link_to @post.customer.name, customer_path(@post.customer_id), class:"text-body" %>
       </h6>
-      
+      <!--投稿内容詳細とアクション件数-->
       <div class="row mt-2">
         <div class="col-md-9">
+          <!--ゲームタイトル-->
           <h4><%= @post.game_name %></h4>
+          <!--投稿タイトル-->
           <h5>
             <%= link_to @post.title, post_path(@post.id), class:"text-body" %>
           </h5>
+          <!--投稿内容-->
           <h6 class="py-3" style="border-top: 2px solid #d8d8d8; border-bottom: 2px solid #d8d8d8;">
             <%= @post.body %>
           </h6>
-          <p class="text-right"><%= @post.created_at.strftime('%Y/%m/%d　%H:%M') %></p>
+          <!--投稿日時-->
+          <p class="text-right">
+            <%= @post.created_at.strftime('%Y/%m/%d　%H:%M') %>
+          </p>
         </div>
         <!--アクション件数-->
         <div class="col-md-3">
           <table class="mx-auto">
+            <!--いいね件数-->
             <tr>
               <td>いいね</td>
               <td><strong><%= @post.favorites.count %></strong> 件</td>
             </tr>
+            <!--コメント件数-->
             <tr>
               <td>コメント</td>
               <td><strong><%= @post.post_comments.count %></strong> 件</td>
@@ -48,12 +57,14 @@
   </div>
 </div>
 
-<!--編集フォーム-->
+<!--投稿編集-->
 <div class="col-md-8 mx-auto my-3">
   <h2>投稿編集</h2>
+  <!--編集フォーム-->
   <%= render 'form', post: @post %>
+  <!--各種ページ遷移ボタン-->
   <div class="text-center">
-    <%= link_to 'Show', @post %> |
-    <%= link_to 'Back', posts_path, class: "back" %>
+    <%= link_to 'この投稿のページ', @post %> |
+    <%= link_to '投稿一覧', posts_path, class: "back" %>
   </div>
 </div>

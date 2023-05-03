@@ -32,16 +32,22 @@
           </h6>
           <!--投稿内容とアクションボタン-->
           <div class="row mt-2">
-            <!--投稿内容-->
+            <!--投稿詳細-->
             <div class="col-md-9">
+              <!--ゲームタイトル-->
               <h4><%= @post.game_name %></h4>
+              <!--投稿タイトル-->
               <h5>
                 <%= link_to @post.title, post_path(@post.id), class:"text-body" %>
               </h5>
+              <!--投稿内容-->
               <h6 class="py-3" style="border-top: 2px solid #d8d8d8; border-bottom: 2px solid #d8d8d8;">
                 <%= @post.body %>
               </h6>
-              <p class="text-right"><%= @post.created_at.strftime('%Y/%m/%d　%H:%M') %></p>
+              <!--投稿日時-->
+              <p class="text-right">
+                <%= @post.created_at.strftime('%Y/%m/%d　%H:%M') %>
+              </p>
             </div>
             <!--アクションボタン-->
             <div class="col-md-3 pl-0 text-center">
@@ -58,6 +64,7 @@
               </div>
               <!--管理者と投稿者用ボタン-->
               <% if current_admin || @post.customer_id == current_customer.id %>
+                <!--投稿編集ボタン-->
                 <div class="mt-2">
                   <%= link_to '編集',
                               edit_post_path(@post),
@@ -65,6 +72,7 @@
                               style:"width: 100px;"
                   %>
                 </div>
+                <!--投稿削除ボタン-->
                 <div class="my-2">
                   <%= link_to '削除',
                               @post, method: :delete,
@@ -85,10 +93,11 @@
 <!--コメント関連-->
 <div class="m-5">
   <div class="row mt-5">
+    <!--コメント一覧-->
     <div class="col-md-6">
       <%= render 'public/post_comments/index', post: @post %>
     </div>
-    
+    <!--コメント投稿フォーム-->
     <div class="col-md-6">
       <%= form_with model: [@post, @post_comment] do |f| %>
         <%= f.label 'コメント' %><br />
@@ -96,7 +105,6 @@
         <%= f.submit "送信" %>
       <% end %>
     </div>
-    
   </div>
 </div>
 

@@ -1,14 +1,20 @@
+<!--顧客ログイン判定-->
 <% if customer_signed_in? %>
+  <!--検索フォーム-->
   <div class="search_form">
     <%= form_with url: public_search_path, local: true, method: :get do |f| %>
       <div class="row">
+        <!--検索内容入力欄-->
         <div class="col-md-8">
+          <!--単語入力欄-->
           <div class="my-1">
             <%= f.text_field :word %>
           </div>
+          <!--検索カテゴリ選択欄-->
           <div class="my-1">
             <%= f.select :range, options_for_select([['ユーザ名'], ['ゲーム名']]) %>
           </div>
+          <!--検索方法選択欄-->
           <div class="my-1">
             <%= f.select :search, options_for_select([["完全一致","perfect_match"],
                                                       ["前方一致","forward_match"],
@@ -16,6 +22,7 @@
                                                       ["部分一致","partial_match"]]) %>
           </div>
         </div>
+        <!--検索開始ボタン-->
         <div class="col-md-4">
           <%= f.submit "検索", class: "btn btn-primary" %>
         </div>
