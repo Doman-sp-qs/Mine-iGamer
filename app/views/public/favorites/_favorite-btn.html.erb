@@ -1,10 +1,12 @@
+<!--いいねされてるか判定-->
 <% if post.favorited_by?(current_customer) %>
+  <!--いいねされてる時-->
   <%= link_to post_favorites_path(post), method: :delete, remote: true, class:"btn text-dark border border-secondary rounded", style:"width: 130px" do %>
     <span>いいね</span>
     <i class="fas fa-heart text-danger"></i><%= post.favorites.count %>
   <% end %>
-  
 <% else %>
+  <!--いいねされてない時-->
   <%= link_to post_favorites_path(post), method: :post, remote: true, class:"btn text-dark border border-secondary rounded", style:"width: 130px" do %>
     <span>いいね</span>
     <i class="fas fa-heart text-primary"></i><%= post.favorites.count %>

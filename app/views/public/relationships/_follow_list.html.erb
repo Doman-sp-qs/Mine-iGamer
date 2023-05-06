@@ -1,11 +1,13 @@
-<div class="container">
+<!--フォロー/フォロワーがいるかどうか判定-->
 <% if customers.exists?(customers) %>
+  <!--フォロー/フォロワーがいる時-->
   <% customers.each do |customer| %>
+    <!--フォロー/フォロワー一覧-->
     <div class="card my-3">
       <%= render 'public/customers/info', customer: customer %>
     </div>
   <% end %>
 <% else %>
+<!--フォロー/フォロワーがいない時-->
   <p>ユーザーはいません</p>
 <% end %>
-</div>

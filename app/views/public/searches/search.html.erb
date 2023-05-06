@@ -1,24 +1,25 @@
 <!--ヘッダー-->
 <%= render 'layouts/header' %>
 
-<!--検索結果-->
+<!--検索結果表示-->
+<!--検索カテゴリ判定-->
 <% if @range == "ユーザ名" %>
-  <!--ユーザの検索結果ページ↓ -->
+  <!--ユーザ名での検索結果ページ-->
   <!--ページタイトル-->
   <h2 class="text-center text-secondary mt-2">
     該当ユーザ一覧
     <i class="fas fa-users"></i>
   </h2>
-  <!--ユーザの検索結果リスト -->
+  <!--ユーザ名での検索結果リスト -->
   <%= render 'public/customers/customer-list', customers: @customers %>
 <% else %>
-  <!--投稿の検索結果ページ↓ -->
+  <!--ゲームタイトルでの検索結果ページ -->
   <!--ページタイトル-->
   <h2 class="text-center text-secondary mt-2">
     該当する投稿
     <i class="fas fa-mail-bulk"></i>
   </h2>
-  <!--投稿の検索結果リスト -->
+  <!--ゲームタイトルでの検索結果リスト -->
   <%= render 'public/posts/index', posts: @posts %>
   
   <!--該当する投稿の有無判定-->
