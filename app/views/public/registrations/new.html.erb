@@ -1,23 +1,19 @@
 <!--ヘッダー-->
 <%= render 'layouts/header' %>
 
-<h2 class="text-center my-4">新規登録</h2>
+
 
 <div class="row">
-  <div class="col-md-10 text-center mx-auto">
-    <div class="form-body">
+  <div class="col-md-7 text-center shadow-lg rounded mx-auto px-0 my-5">
+    <h4 class="text-center text-dark bg-light py-4">ユーザー新規登録</h4>
+    <div class="form-body p-4">
       
+      <div class="mx-auto text-center mb-4">
+        <p>ユーザー名とメールアドレスと<br>パスワードを入力してください。</p>
+      </div>
       
       <%= form_with model: @customer, url: registration_path(resource_name) do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
-      
-        <div class="input-group my-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
-          </div>
-          
-          <%= f.email_field :email, autofocus: true, placeholder: "email", class:"form-control" %>
-        </div>
         
         <div class="input-group my-2">
           <div class="input-group-prepend">
@@ -29,12 +25,20 @@
         
         <div class="input-group my-2">
           <div class="input-group-prepend">
+            <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
+          </div>
+          
+          <%= f.email_field :email, autofocus: true, placeholder: "email", class:"form-control" %>
+        </div>
+        
+        <div class="input-group my-2">
+          <div class="input-group-prepend">
             <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
           </div>
           
           <%= f.password_field :password, autocomplete: "new-password", placeholder: "password", class:"form-control" %>
           <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+            (<%= @minimum_password_length %> 文字以上)
           <% end %><br />
         </div>
       
@@ -47,15 +51,17 @@
         </div>
       
         <div class="actions">
-          <%= f.submit "Sign up", class:"btn btn-success" %>
+          <%= f.submit "新規登録", class:"btn btn-success mt-4 px-5" %>
         </div>
       <% end %>
       
-      
+    </div>
+    
+    <div class="bg-light py-4">
+      <span class="text-secondary">アカウントをお持ちの方は</span>
+      <%= render "public/shared/links" %>
     </div>
   </div>
 </div>
 
 
-
-<%= render "public/shared/links" %>
