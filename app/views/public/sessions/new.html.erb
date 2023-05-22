@@ -1,11 +1,17 @@
 <!--ヘッダー-->
 <%= render 'layouts/header' %>
 
-<h2 class="text-center my-4">ログイン</h2>
-
+<!--ログインフォーム-->
 <div class="row">
-  <div class="col-md-10 text-center mx-auto">
-    <div class="form-body">
+  <div class="col-md-7 text-center shadow-lg rounded mx-auto px-0 my-5">
+    <h5 class="text-center text-dark bg-light py-4">ユーザーログイン</h5>
+    <div class="form-body p-4">
+      
+      <div class="mx-auto text-center mb-4">
+        <!-- ここからを追加 -->
+        <p>メールアドレスと<br>パスワードを入力してください。</p>
+        <!-- ここまでを追加 -->
+      </div>
       
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="input-group my-2">
@@ -23,21 +29,27 @@
           
           <%= f.password_field :password, autocomplete: "current-password", placeholder: "password", class:"form-control" %>
         </div>
-      
-        <% if devise_mapping.rememberable? %>
-          <div class="input-group my-2">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-          </div>
-        <% end %>
+        
+        <!--remember meチェックボックス-->
+        <%# if devise_mapping.rememberable? %>
+          <!--<div class="input-group my-2">-->
+            <%#= f.check_box :remember_me %>
+            <%#= f.label :remember_me %>
+          <!--</div>-->
+        <%# end %>
       
         <div class="actions">
-          <%= f.submit "Log in", class:"btn btn-success" %>
+          <%= f.submit "ログイン", class:"btn btn-info mt-4 px-5" %>
         </div>
       <% end %>
       
     </div>
+    <div class="bg-light py-4">
+      <span class="text-secondary">アカウントをお持ちでない方は</span>
+      <%= render "public/shared/links" %>
+    </div>
+    
   </div>
 </div>
 
-<%= render "public/shared/links" %>
+
