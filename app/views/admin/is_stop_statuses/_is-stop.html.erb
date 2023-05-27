@@ -1,7 +1,7 @@
 <% if customer.is_stopping == true %>
   <%= link_to "利用再開", admin_customer_is_restart_path(customer),
-  method: :delete, remote: true, class: 'btn btn-outline-secondary btn-block' %>
+  method: :delete, remote: true, data: { confirm: '本当に消しますか？' }, class: 'btn btn-outline-secondary btn-block' %>
 <% else %>
   <%= link_to "利用停止", admin_customer_is_stop_path(customer),
-  method: :post, remote: true, class: 'btn btn-outline-secondary btn-block' %>
+  method: :post, remote: true, data: { confirm: '本当に消しますか？' }, class: 'btn btn-outline-secondary btn-block' %>
 <% end %>
