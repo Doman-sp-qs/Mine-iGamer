@@ -52,7 +52,7 @@ class Public::PostsController < ApplicationController
     params.require(:post).permit(:game_name, :title, :body)
   end
   
-  # ユーザ特定用
+  # 投稿ユーザ特定用
   def ensure_correct_post_customer
     post = Post.find(params[:id])
     if current_customer.id != post.customer_id
