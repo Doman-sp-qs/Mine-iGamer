@@ -1,4 +1,5 @@
 class Public::PostCommentsController < ApplicationController
+  before_action :ensure_correct_post_comment_customer, only: [:destroy]
   
   def create
     post = Post.find(params[:post_id])
@@ -21,10 +22,11 @@ class Public::PostCommentsController < ApplicationController
     params.require(:post_comment).permit(:post_comment)
   end
   
-  # ユーザ特定用
-  def ensure_correct_post_customer
-    post = Post.find(params[:id])
-    if current_customer.id != post.customer_id
+  # コメントユーザ特定用
+  def ensure_correct_post_comment_customer
+    post = Post.find(params[:post_id])
+    post_comment = post.post_comments.find_by(id:params[:id], post_id: params[:post_id])
+    if current_customer.id != post_comment.customer_id
       flash[:notice] = "権限がありません"
       redirect_to post_path(post)
     end
